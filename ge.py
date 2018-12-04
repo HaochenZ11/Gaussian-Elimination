@@ -1,3 +1,4 @@
+#forward step of Gaussian Elimination
 def ge_fw(matrix):
     try:
         r=len(matrix)-1
@@ -22,7 +23,7 @@ def ge_fw(matrix):
                 L[firstr] = list(L[i])
                 L[i] = list(temp)
                 break  
-        #print(L)
+        
         #add multiples of a row to another 
         first = matrix[firstr][firstc]
         for i in range(firstr+1,r+1,1):
@@ -34,8 +35,9 @@ def ge_fw(matrix):
         #step performed until no more submatrices            
         firstr = firstr+1
         firstc = firstc+1
-        #print(L)
+      
 
+#backwards step in Gaussian elimination
 def ge_bw (matrix):
     try:
         r=len(matrix)-1
@@ -65,8 +67,7 @@ def ge_bw (matrix):
             if zero == True:
                 temp=list(L[k])
                 L[k]=list(L[r])
-                L[r] = list(temp)
-        print(L)           
+                L[r] = list(temp)           
         #finds last nonzero row
         for k in range(lastr,-1,-1):
             nz=False
@@ -87,8 +88,6 @@ def ge_bw (matrix):
                 for z in range(j,c+1,1):
                     matrix[lastr][z]=matrix[lastr][z]*normal
                 break
-        #if lastr==0:
-         #   break
         for k in range(lastr-1,-1,-1): #makes terms above a zero
            if matrix[k][col] != 0.0:
                 mult = (0-matrix[k][col])
@@ -96,13 +95,6 @@ def ge_bw (matrix):
                     matrix[k][x] = matrix[k][x] +matrix[lastr][x]*mult  
         lastr=lastr-1
         lastc=lastc-1
-        #print(L)
     return matrix
-L=[[2,3,4,5],[3,4,5,6],[4,5,6,7],[9,10,11,12]]
-#L=[[1.0,-2.0,1.0],[0.0,8.0,8.0]]
-#L=[[0,2,4],[3,-2,5]]
-ge_fw(L)
-print(L)
-ge_bw(L)
-print(L)
+
 
